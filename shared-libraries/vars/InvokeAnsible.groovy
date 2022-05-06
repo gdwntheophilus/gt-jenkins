@@ -10,8 +10,8 @@ def call(body) {
     def pipeline_params = [:]
     handleBodyInput(body,pipeline_params)
     def invokeAnsibleHelper = new InvokeAnsibleHelper(this)
-    println( pipeline_params.credentialsId)
-    
+    println( pipeline_params)
+
     pipeline {
         agent any 
         options {
