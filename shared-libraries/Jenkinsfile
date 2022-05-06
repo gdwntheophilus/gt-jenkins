@@ -1,4 +1,6 @@
-@Library('gtheo')
+// this is not a very efficient way to do it, but it is a simple way to get started
+
+@Library('gtheo') _
 
 pipeline {
     agent any
@@ -8,10 +10,19 @@ pipeline {
                 sh 'echo "Hello World"'
                 script {
                     command 'echo "Hello World"'
-                    def z = new org.foo.Zot()
+                    def repo = "master"
+                    def z = new org.helper.GitClone()
                     z.checkOutFrom(repo)
                 }
             }
         }
     }
+}
+
+// the real power of groovy is that you can use it to create your own libraries, below is the real power of scripted pipeline
+
+@Library('gtheo') import org.foo.Utilities
+def utils = new Utilities(this)
+node {
+  utils.mvn 'clean package'
 }
