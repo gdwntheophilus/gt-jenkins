@@ -38,7 +38,7 @@ def call(body) {
                         println(credentialsId)
                         println(credentialsId2)
                         invokeAnsibleHelper.runAnsiblePlaybook("playbooks/invoke-ansible.yml", "hosts/hosts")
-                        def listOfMap = ["a":a,"b":b,"c":c]
+                        def listOfMap = ["a":"a","b":"b","c":"c"]
                         listOfMap.each{ key,value -> 
                             println(key)
                             println(value)
