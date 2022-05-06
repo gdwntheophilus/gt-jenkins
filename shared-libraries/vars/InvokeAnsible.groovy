@@ -1,15 +1,17 @@
 import org.helper.InvokeAnsibleHelper;
 
-def handleBodyInput(body,parameters){
+def handleBodyInput(body,pipeline_params){
     body.resolbeStrategy = Closure.DELEGATE_FIRST
-    body.delegate = parameters
+    body.delegate = pipeline_params
     body()
 }
 
 def call(body) {
-    def parameters = [:]
-    handleBodyInput(body,parameters)
+    def pipeline_params = [:]
+    handleBodyInput(body,pipeline_params)
     def invokeAnsibleHelper = new InvokeAnsibleHelper(this)
+    println( pipeline_params.credentialsId)
+    
     pipeline {
         agent any 
         options {
@@ -20,7 +22,7 @@ def call(body) {
         stages {
             stage('invokingAnsible') {
                 steps {
-                    echo parameters.credentialsId
+                    
                     script {
                         invokeAnsibleHelper.runAnsiblePlaybook("playbooks/invoke-ansible.yml", "hosts/hosts")
                     }
