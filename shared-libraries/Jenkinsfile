@@ -21,7 +21,7 @@ pipeline {
 
 // the real power of groovy is that you can use it to create your own libraries, below is the real power of scripted pipeline
 
-@Library('gtheo') import org.foo.Utilities
+@Library('gtheo') import org.helper.Utilities
 def utils = new Utilities(this)
 node {
   utils.mvn 'clean package'
