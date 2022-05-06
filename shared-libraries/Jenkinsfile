@@ -39,4 +39,9 @@ linux {   // this is a closure method
     sh "ls -lrt  /"
 }
 
-buildPlugin name: 'git'
+buildPlugin name: 'git' //using mapss
+
+//Defining Declarative Pipelines
+@Library('gtheo') _
+
+evenOrOdd(currentBuild.getNumber())
