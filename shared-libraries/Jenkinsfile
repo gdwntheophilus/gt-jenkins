@@ -35,6 +35,8 @@ node {
 test ()
 log.info 'help'
 log.warning 'warning'
-linux {
+linux {   // this is a closure method
     sh "ls -lrt  /"
 }
+
+buildPlugin name: 'git'
