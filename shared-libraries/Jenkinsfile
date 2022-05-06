@@ -1,0 +1,17 @@
+@Library('gtheo')
+
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'echo "Hello World"'
+                script {
+                    command 'echo "Hello World"'
+                    def z = new org.foo.Zot()
+                    z.checkOutFrom(repo)
+                }
+            }
+        }
+    }
+}
