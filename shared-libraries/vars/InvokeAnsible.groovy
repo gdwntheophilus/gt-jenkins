@@ -12,6 +12,8 @@ def call(body) {
     def invokeAnsibleHelper = new InvokeAnsibleHelper(this)
     String credentialsId = pipeline_params.get('credentialsId')
 
+    String credentialsId2 = pipeline_params.credentialsId
+
     pipeline {
         agent any 
         options {
@@ -23,6 +25,7 @@ def call(body) {
             stage('invokingAnsible') {
                 steps {
                     echo "${credentialsId}"
+                    echo "${credentialsId2}"
                     script {
                         invokeAnsibleHelper.runAnsiblePlaybook("playbooks/invoke-ansible.yml", "hosts/hosts")
                     }
