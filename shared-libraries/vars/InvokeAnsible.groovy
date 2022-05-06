@@ -2,11 +2,8 @@ import org.helper.InvokeAnsibleHelper;
 
 def handleBodyInput(body,parameters){
     body.resolbeStrategy = Closure.DELEGATE_FIRST
-    println "body.resolveStrategy: ${body.resolveStrategy}"
     body.delegate = parameters
-    println("body.delegate: ${body.delegate}")
     body()
-    println("body: ${body}")
 }
 
 def call(body) {
@@ -23,7 +20,7 @@ def call(body) {
         stages {
             stage('invokingAnsible') {
                 steps {
-                    echo "${parameters}"
+                    echo "${parameters.credentialsId}"
                     script {
                         invokeAnsibleHelper.runAnsiblePlaybook("playbooks/invoke-ansible.yml", "hosts/hosts")
                     }
