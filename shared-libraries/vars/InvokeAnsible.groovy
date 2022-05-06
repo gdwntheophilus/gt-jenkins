@@ -19,6 +19,7 @@ def call(body) {
         stages {
             stage('invokingAnsible') {
                 steps {
+                    echo "${parameters}"
                     script {
                         invokeAnsibleHelper.runAnsiblePlaybook("playbooks/invoke-ansible.yml", "hosts/hosts")
                     }
