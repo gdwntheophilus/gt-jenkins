@@ -32,6 +32,9 @@ node {
 
 @Library('gtheo') _
 
-test {}
+test ()
 log.info 'help'
 log.warning 'warning'
+linux {
+    sh "ls -lrt  /"
+}
