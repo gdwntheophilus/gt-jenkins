@@ -1,47 +1,10 @@
-// this is not a very efficient way to do it, but it is a simple way to get started
+@Library("gtheo")
 
-@Library('gtheo') _
-
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                sh 'echo "Hello World"'
-                script {
-                    command 'echo "Hello World"'
-                    def repo = "master"
-                    def z = new org.helper.GitClone()
-                    z.checkOutFrom(repo)
-                }
-            }
-        }
-    }
+InvokeAnsible {
+    credentialsId: "credentialsId"
+    portfolio: "gt-portfolio"
+    appname: "gt-appname"
+    appversion: "gt-appversion"
+    agentname: "jenins-agent-slave-02"
+    giturl: "https://github.com/gdwntheophilus/gt-ansible.git"
 }
-
-// the real power of groovy is that you can use it to create your own libraries, below is the real power of scripted pipeline
-
-@Library('gtheo') import org.helper.Utilities
-def utils = new Utilities(this)
-node {
-  utils.mvn 'clean package'
-}
-
-
-//defining global variables in vars
-
-@Library('gtheo') _
-
-test ()
-log.info 'help'
-log.warning 'warning'
-linux {   // this is a closure method
-    sh "ls -lrt  /"
-}
-
-buildPlugin name: 'git' //using mapss
-
-//Defining Declarative Pipelines
-@Library('gtheo') _
-
-evenOrOdd(currentBuild.getNumber())
