@@ -13,11 +13,16 @@ def call(body) {
     body.delegate = pipeline_params
     body()
     def invokeAnsibleHelper = new InvokeAnsibleHelper(this)
-    String credentialsId = pipeline_params.get('credentialsId')
 
-    String credentialsId2 = pipeline_params.credentialsId
+    //different ways to get the values
+    String credentialsId = pipeline_params.get('credentialsId')
     println(credentialsId)
+    String credentialsId2 = pipeline_params.credentialsId
     println(credentialsId2)
+    String credentialsId3 = pipeline_params.containsKey('credentialsId') ? pipeline_params.get('credentialsId') : 'default'
+    println(credentialsId3)
+
+
 
     pipeline {
         agent any 
