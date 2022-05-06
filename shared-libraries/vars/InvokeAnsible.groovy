@@ -2,8 +2,11 @@ import org.helper.InvokeAnsibleHelper;
 
 def handleBodyInput(body,parameters){
     body.resolbeStrategy = Closure.DELEGATE_FIRST
+    println "body.resolveStrategy: ${body.resolveStrategy}"
     body.delegate = parameters
+    println("body.delegate: ${body.delegate}")
     body()
+    println("body: ${body}")
 }
 
 def call(body) {
