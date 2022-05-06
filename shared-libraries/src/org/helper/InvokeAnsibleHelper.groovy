@@ -8,7 +8,7 @@ class InvokeAnsibleHelper implements Serializable {
 
     String runAnsiblePlaybook(String playbookname, String hostsFileName) {
 
-        steps.rerty(3) {
+        steps.retry(3) {
             steps.echo "running ansible playbook: ${playbookname}"
             steps.echo "ansible-playbook -i " + hostsFileName + ' ' + playbookname
         }
