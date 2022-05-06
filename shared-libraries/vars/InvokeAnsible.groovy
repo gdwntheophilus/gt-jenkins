@@ -11,6 +11,7 @@ def handleBodyInput(body,parameters){
 
 def call(body) {
     def parameters = [:]
+    handleBodyInput(body,parameters)
     def invokeAnsibleHelper = new InvokeAnsibleHelper(this)
     pipeline {
         agent any 
