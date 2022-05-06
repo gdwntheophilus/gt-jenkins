@@ -1,10 +1,10 @@
 @Library("gtheo") _
 
 InvokeAnsible {
-    credentialsId: "credentialsId"
-    portfolio: "gt-portfolio"
-    appname: "gt-appname"
-    appversion: "gt-appversion"
-    agentname: "jenins-agent-slave-02"
-    giturl: "https://github.com/gdwntheophilus/gt-ansible.git"
+    credentialsId: 'credentialsId'
+    portfolio: 'gt-portfolio'
+    appname: 'gt-appname'
+    appversion: 'gt-appversion'
+    agentname: 'jenins-agent-slave-02'
+    giturl: 'https://github.com/gdwntheophilus/gt-ansible.git'
 }
